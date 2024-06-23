@@ -1,6 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Pixels from "../islands/Pixels.tsx";
+import SynthesisEngine from "../islands/SynthesisEngine.tsx";
 import { getGrid } from "../shared/db.ts";
 import { Grid } from "../shared/types.ts";
 
@@ -21,6 +22,10 @@ export default function Home(props: PageProps<Grid>) {
       <div class="p-4 mx-auto max-w-screen-md flex justify-center">
         <Pixels grid={props.data} />
       </div>
+      <div class="p-4 mx-auto max-w-screen-md flex justify-center">
+        <SynthesisEngine grid={props.data} />
+      </div>
+
       <div class="p-4 flex justify-evenly gap-8 text-center">
         <a
           href="https://github.com/denoland/pixelpage"

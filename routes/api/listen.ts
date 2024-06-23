@@ -19,6 +19,7 @@ export const handler: Handlers = {
         };
 
         async function queueFullUpdate() {
+          // console.log (`queu full update called`)
           timerId = undefined;
           try {
             const grid = await getGrid();
