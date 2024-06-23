@@ -20,9 +20,6 @@ export default function Home(props: PageProps<Grid>) {
         <link rel="icon" type="image/jpg" href="/logo.jpg" />
       </Head>
       <div class="p-4 mx-auto max-w-screen-md flex justify-center">
-        <Pixels grid={props.data} />
-      </div>
-      <div class="p-4 mx-auto max-w-screen-md flex justify-center">
         <SynthesisEngine grid={props.data} />
       </div>
 
