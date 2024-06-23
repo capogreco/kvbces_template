@@ -19,7 +19,10 @@ export default function Home(props: PageProps<Grid>) {
         <title>pixelpage</title>
         <link rel="icon" type="image/jpg" href="/logo.jpg" />
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md flex justify-center">
+      
+      <SynthesisEngine grid={props.data} />
+
+      {/* <div class="p-4 mx-auto max-w-screen-md flex justify-center">
         <SynthesisEngine grid={props.data} />
       </div>
 
@@ -36,7 +39,7 @@ export default function Home(props: PageProps<Grid>) {
         >
           Powered by Deno Deploy
         </a>
-      </div>
+      </div> */}
     </>
   );
 }
