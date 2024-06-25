@@ -1,7 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
-// import Pixels from "../islands/Pixels.tsx";
-import SynthesisEngine from "../islands/SynthesisEngine.tsx";
+import Control from "../islands/Control.tsx";
 import { getGrid } from "../shared/db.ts";
 import { Grid } from "../shared/types.ts";
 
@@ -19,7 +18,7 @@ export default function Home(props: PageProps<Grid>) {
         <title>pixelpage</title>
         <link rel="icon" type="image/jpg" href="/logo.jpg" />
       </Head>
-      <SynthesisEngine grid={props.data} />
+      <Control grid={props.data} />
     </>
   );
 }

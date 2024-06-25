@@ -4,7 +4,7 @@ import { useEffect } from "preact/hooks";
 import { Grid, GridUpdate } from "../shared/types.ts";
 
 import ColorPicker from "../components/ColorPicker.tsx";
-import PixelGrid from "../components/PixelGrid.tsx";
+import ControlGrid from "../components/ControlGrid.tsx";
 
 function applyGameUpdates(signal: Signal<Grid>, updates: GridUpdate[]) {
   const grid = signal.value;
@@ -16,7 +16,7 @@ function applyGameUpdates(signal: Signal<Grid>, updates: GridUpdate[]) {
   signal.value = { ...grid };
 }
 
-export default function Pixels(props: { grid: Grid }) {
+export default function Control(props: { grid: Grid }) {
   const selected = useSignal(0);
   const grid = useSignal(props.grid);
 
@@ -47,7 +47,7 @@ export default function Pixels(props: { grid: Grid }) {
 
   return (
     <div class="flex flex-col gap-4">
-      <PixelGrid grid={grid} selected={selected} updateGrid={updateGrid} />
+      <ControlGrid grid={grid} selected={selected} updateGrid={updateGrid} />
       <ColorPicker selected={selected} />
     </div>
   );
