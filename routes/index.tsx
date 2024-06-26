@@ -1,6 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
-// import Pixels from "../islands/Pixels.tsx";
 import SynthesisEngine from "../islands/SynthesisEngine.tsx";
 import { getGrid } from "../shared/db.ts";
 import { Grid } from "../shared/types.ts";

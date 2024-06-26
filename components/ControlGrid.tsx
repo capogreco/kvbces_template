@@ -25,7 +25,7 @@ export default function ControlGrid(
         <div
           class={`w-[${PIXEL_SIZE}px] h-[${PIXEL_SIZE}px] sm:w-[${DESKTOP_PIXEL_SIZE}px] sm:h-[${DESKTOP_PIXEL_SIZE}px] bg-[${color}]`}
           onClick={() => {
-            updateGrid(i, COLORS[selected.value]);
+              updateGrid(i, COLORS[selected.value]);
           }}
         >
         </div>

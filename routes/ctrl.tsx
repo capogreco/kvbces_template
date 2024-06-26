@@ -11,7 +11,7 @@ export const handler: Handlers<Grid> = {
   },
 };
 
-export default function Home(props: PageProps<Grid>) {
+export default function ControlPage(props: PageProps<Grid>) {
   return (
     <>
       <Head>

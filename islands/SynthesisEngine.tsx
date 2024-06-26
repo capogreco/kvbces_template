@@ -16,11 +16,27 @@ function applyGameUpdates (signal: Signal<Grid>, updates: GridUpdate[]) {
    signal.value = { ...grid }
 }
 
-export default function SynthesisEngine(props: { grid: Grid }) {
+export default function SynthesisEngine(props: { 
+      grid: Grid,
+      enabled: boolean,
+   }) {
+
    const selected = useSignal (0)
    const grid = useSignal (props.grid)
+   const enabled = useSignal (props.enabled)
+
+   const enable = () => {
+      console.log (`enable called`)
+      enabled.value = true
+      console.log (`enabled`)
+   }
 
    useEffect (() => {
+      // audio_ctx = new AudioContext ()
+      // audio_ctx.suspend ()
+      // console.log (audio_ctx)
+      enabled.value = false
+     
       const eventSource = new EventSource(`/api/listen`)
       eventSource.onmessage = e => {
          const updates: GridUpdate[] = JSON.parse (e.data)
@@ -45,10 +61,21 @@ export default function SynthesisEngine(props: { grid: Grid }) {
       applyGameUpdates (grid, [update])
    }
 
-   return (
-      <div class="flex flex-col gap-4">
-         <PixelGrid grid={grid} selected={selected} updateGrid={updateGrid} />
-         {/* <ColorPicker selected={selected} /> */}
-      </div>
-   )
+   if (enabled.value) {
+      return (
+         <div class="flex flex-col gap-4">
+            <PixelGrid grid={grid} selected={selected} updateGrid={updateGrid} />
+         </div>
+      )
+   }
+   else {
+      return (
+         <div 
+            class="font-sans font-bold italic text-7xl text-white text-center justify-center items-center flex h-screen bg-black"
+            onPointerDown={ enable }
+         >
+            → ENABLE
+         </div>
+      )   
+   }
 }
