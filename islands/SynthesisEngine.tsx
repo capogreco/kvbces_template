@@ -10,10 +10,24 @@ function applyGameUpdates (signal: Signal<Grid>, updates: GridUpdate[]) {
    const grid = signal.value
    for (const update of updates) {
       if (grid.versionstamps[update.index] >= update.versionstamp) continue
+      console.log (`applying update`, update.versionstamp)
       grid.tiles[update.index] = update.color
       grid.versionstamps[update.index] = update.versionstamp
+      blip ()
    }
    signal.value = { ...grid }
+}
+
+let audio_ctx: AudioContext
+
+function blip () {
+   if (!audio_ctx || audio_ctx.state === `suspended`) return
+   const osc = audio_ctx.createOscillator ()
+   osc.type = `sine`
+   osc.frequency.value = 440
+   osc.connect (audio_ctx.destination)
+   osc.start ()
+   osc.stop (audio_ctx.currentTime + 0.1)
 }
 
 export default function SynthesisEngine(props: { 
@@ -26,15 +40,15 @@ export default function SynthesisEngine(props: {
    const enabled = useSignal (props.enabled)
 
    const enable = () => {
-      console.log (`enable called`)
+      audio_ctx.resume ()
       enabled.value = true
+      console.log (audio_ctx.state)
       console.log (`enabled`)
    }
 
    useEffect (() => {
-      // audio_ctx = new AudioContext ()
-      // audio_ctx.suspend ()
-      // console.log (audio_ctx)
+      audio_ctx = new AudioContext ()
+      audio_ctx.suspend ()
       enabled.value = false
      
       const eventSource = new EventSource(`/api/listen`)
