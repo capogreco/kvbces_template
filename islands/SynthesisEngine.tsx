@@ -39,8 +39,8 @@ export default function SynthesisEngine(props: {
    const grid = useSignal (props.grid)
    const enabled = useSignal (props.enabled)
 
-   const enable = () => {
-      audio_ctx.resume ()
+   const enable = async () => {
+      await audio_ctx.resume ()
       enabled.value = true
       console.log (audio_ctx.state)
       console.log (`enabled`)
@@ -79,6 +79,7 @@ export default function SynthesisEngine(props: {
       return (
          <div class="flex flex-col gap-4">
             <PixelGrid grid={grid} selected={selected} updateGrid={updateGrid} />
+            { audio_ctx.state }
          </div>
       )
    }
